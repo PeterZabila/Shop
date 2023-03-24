@@ -1,11 +1,12 @@
 import React from 'react';
-import { AppBar, ToolBar, IconButton, Badge, MenuItem, Menu, Typography } from '@material-ui/core';
+import { AppBar, IconButton, Badge, Typography } from '@material-ui/core';
+import ToolBar from '@material-ui/core/Toolbar';
 import { ShoppingCart } from '@material-ui/icons';
-import logo from '../../assets/logo.jpeg';
+import logo from '../../assets/shop.jpg';
 
 import useStyles from './styles'
 
-const NavBar = () => {
+const NavBar = ({totalItems}) => {
 const classes = useStyles();
 
     return (
@@ -19,8 +20,8 @@ const classes = useStyles();
                 </ToolBar>
                 <div className={classes.grow}/>
                 <div className={classes.button}>
-                    <IconButton aria-label="SHow cart items" color="inherit">
-                        <Badge badgeContent={2}>
+                    <IconButton aria-label="Show cart items" color="inherit">
+                        <Badge badgeContent={totalItems} color="secondary">
                             <ShoppingCart/>
                         </Badge>
                     </IconButton>
@@ -31,4 +32,4 @@ const classes = useStyles();
     )
 }
 
-export default NavBar;s
+export default NavBar;
