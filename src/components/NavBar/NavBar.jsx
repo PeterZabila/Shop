@@ -4,29 +4,32 @@ import ToolBar from '@material-ui/core/Toolbar';
 import { ShoppingCart } from '@material-ui/icons';
 import logo from '../../assets/shop.jpg';
 
+import { Link, useLocation } from 'react-router-dom';
+
 import useStyles from './styles'
 
-const NavBar = ({totalItems}) => {
+const NavBar = ({ totalItems }) => {
 const classes = useStyles();
-
+const location = useLocation();
     return (
         <>
             <AppBar position="fixed" className={classes.appBar} color="inherit">
                 <ToolBar>
-                    <Typography variant="h5" className={classes.title} color="inherit">
-                        <img src={logo} alt="Shop" height="25px" className={classes.image} />
+                    <Typography component={Link} to="/" variant="h5" className={classes.title} color="inherit">
+                        <img src={logo} alt="Shop" height="45px" className={classes.image}/>
                         Shop
                     </Typography>
-                </ToolBar>
                 <div className={classes.grow}/>
-                <div className={classes.button}>
-                    <IconButton aria-label="Show cart items" color="inherit">
+                {location.pathname === '/' && (
+                    <div className={classes.button}>
+                        <IconButton component={Link} to="/cart" aria-label="Show cart items" color="inherit">
                         <Badge badgeContent={totalItems} color="secondary">
-                            <ShoppingCart/>
+                            <ShoppingCart />
                         </Badge>
-                    </IconButton>
-                </div>
-
+                        </IconButton>
+                    </div>
+                )}
+                </ToolBar>
             </AppBar>
         </>
     )
